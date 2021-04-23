@@ -12,13 +12,19 @@ module Api
 
       # POST /trips
       def generate_shorten_urls
+        @page = Page.where(url: page_params[:url]).first
+        if @page != nil
+          json_response(@page.shortenUrl)
+          return
+        end
+
         @page = Page.new(page_params)
         @page.shortenUrl = CharactersCodeEngine.encode((Page.count > 0 ? Page.last.id : 0) + 1)
 
         if @page.save
-            json_response(@page.shortenUrl)
+          json_response(@page.shortenUrl)
         else
-          render json: @page.errors, status: :unprocessable_entity
+          json_response(@page.errors, :unprocessable_entity)
         end
       end
 
