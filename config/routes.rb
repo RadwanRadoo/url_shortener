@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json }  do
     namespace :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      
+      get       '/pages/openPage/:slug',           to: 'pages#openPage'
+      post      '/pages/generate_shorten_urls',    to: 'pages#generate_shorten_urls'
     end
   end
 end
