@@ -28,6 +28,22 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # write the model structure from the db
+  gem 'annotate'
+
+  # watches for N+1 queries and alerts you when it spots one.
+  gem 'bullet'
+
+  # better error view
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  # pry is the current state of the art when it comes to debugging Ruby applications.
+  gem 'pry-byebug'
+
+  # for rails app testing
+  gem 'rspec-rails'
 end
 
 group :development do
