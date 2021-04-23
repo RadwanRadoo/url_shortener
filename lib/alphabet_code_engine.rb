@@ -3,11 +3,11 @@ class CharactersCodeEngine
   CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(//)
 
   def self.encode(x)
-    return CHARACTERS[0] if i == 0
+    return CHARACTERS[0] if x == 0
     res = ''
     base = CHARACTERS.length
     while x > 0
-      res << CHARACTERS[i.modulo(base)]
+      res << CHARACTERS[x.modulo(base)]
       x /= base
     end
     res.reverse
