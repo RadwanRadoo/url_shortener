@@ -7,16 +7,16 @@ module Api
 
       # GET /trips/1
       def openPage
-        redirect_to @page.url
+        json_response(@page.url)
       end
 
       # POST /trips
       def generate_shorten_urls
         @page = Page.new(page_params)
-        @page.shortenUrl = CharactersCodeEngine.encode(Page.last.id + 1)
+        @page.shortenUrl = CharactersCodeEngine.encode((Page.count > 0 ? Page.last.id : 0) + 1)
 
         if @page.save
-            json_response({ "shortenUrl" : @page.shortenUrl })
+            json_response(@page.shortenUrl)
         else
           render json: @page.errors, status: :unprocessable_entity
         end
