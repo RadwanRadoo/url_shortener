@@ -1,17 +1,17 @@
-require 'alphabet_code_engine.rb'
+require 'characters_code_engine.rb'
 
 module Api
   module V1
     class PagesController < ApiController
-      before_action :set_page, only: [:openPage]
+      before_action :set_page, only: [:show]
 
       # GET /trips/1
-      def openPage
+      def show
         json_response(@page.url)
       end
 
       # POST /trips
-      def generate_shorten_urls
+      def create
         @page = Page.where(url: page_params[:url]).first
         if @page != nil
           json_response(@page.shortenUrl)

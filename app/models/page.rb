@@ -1,3 +1,3 @@
 class Page < ApplicationRecord
-  validates :url, http_url: true
+  validates :url, http_url: true, presence: true
 end
