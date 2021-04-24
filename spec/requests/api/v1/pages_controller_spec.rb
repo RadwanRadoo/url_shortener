@@ -15,10 +15,9 @@ require 'characters_code_engine.rb'
 
 RSpec.describe "api/v1/pages", type: :request do
   
-  page = Page.where(url: "http://www.sgoogleaasss.com").first
+  page = Page.where(url: "http://www.s.com").first
   if page == nil
-    page = Page.create(:url => "http://www.sgoogleaasss.com", :shortenUrl => CharactersCodeEngine.encode((Page.count > 0 ? Page.last.id : 0) + 1))
-    page.save
+    page = Page.create(:url => "http://www.s.com", :shortenUrl => CharactersCodeEngine.encode((Page.count > 0 ? Page.last.id : 0) + 1))
   end  
   
   context 'GET #' do
@@ -27,7 +26,7 @@ RSpec.describe "api/v1/pages", type: :request do
       get "/api/v1/pages/#{page.shortenUrl}"
       # binding.pry
       expect(response).to have_http_status(200)
-      expect(response.body).to eq('http://www.sgoogleaasss.com')
+      expect(response.body).to eq('http://www.s.com')
     end
 
     it 'should not success' do
